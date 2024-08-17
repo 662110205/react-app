@@ -24,16 +24,6 @@ const Home = () => {
     getProducts();
   }, []); // Put the empty array to make sure that the hook is executed only once
 
-  // async function getProducts() {
-  //   const products = await axios.get(
-  //     'https://apimocha.com/dornor/products'
-  //   );
-  //   setProducts(products.data);
-  //   console.log(products);
-  // }
-  
-  // getProducts();
-
   return (
     <Fragment>
       <h1>New Products</h1>
