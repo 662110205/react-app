@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Product from './Product/Index';
 import Addform from './Product/Addform';
 import axios from 'axios';
@@ -12,15 +12,27 @@ const Home = () => {
     const newProduct = { id: ++currentProductId, ...product };
     setProducts([...products, newProduct]);
   }
-  async function getProducts() {
-    const products = await axios.get(
-      'https://apimocha.com/dornor/products'
-    );
-    setProducts(products.data);
-    console.log(products);
-  }
+
+  useEffect(() => {
+    async function getProducts() {
+      const products = await axios.get(
+        'https://apimocha.com/dornor001/products'
+      );
+      setProducts(products.data);
+    }
   
-  getProducts();
+    getProducts();
+  }, []); // Put the empty array to make sure that the hook is executed only once
+
+  // async function getProducts() {
+  //   const products = await axios.get(
+  //     'https://apimocha.com/dornor/products'
+  //   );
+  //   setProducts(products.data);
+  //   console.log(products);
+  // }
+  
+  // getProducts();
 
   return (
     <Fragment>
