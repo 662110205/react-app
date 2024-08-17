@@ -1,17 +1,26 @@
 import React, { Fragment, useState } from 'react';
-import data from '../app/data';
 import Product from './Product/Index';
 import Addform from './Product/Addform';
+import axios from 'axios';
 
 let currentProductId = 9;
 
 const Home = () => {
-  const [products, setProducts] = useState(data);
+  const [products, setProducts] = useState([]);
 
   function addProduct(product) {
     const newProduct = { id: ++currentProductId, ...product };
     setProducts([...products, newProduct]);
   }
+  async function getProducts() {
+    const products = await axios.get(
+      'https://apimocha.com/dornor/products'
+    );
+    setProducts(products.data);
+    console.log(products);
+  }
+  
+  getProducts();
 
   return (
     <Fragment>
