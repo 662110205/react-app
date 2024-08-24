@@ -1,12 +1,17 @@
 import styled from 'styled-components';
+import { Routes, Route, Link } from 'react-router-dom';
 
-function Navbar({className}) {
+function Navbar({ className }) {
     return (
         <header className={className}>
-            <a href="/" className="brand">
+            {/* <a href="/" className="brand">
                 Trendie
             </a>
-            <a href="/create-product">Create product</a>
+            <a href="/create-product">Create product</a> */}
+
+            <Link to="/">Trendie</Link>
+            <Link to="/create-product">Create product</Link>
+
         </header>
     );
 }
