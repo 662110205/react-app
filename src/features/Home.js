@@ -1,11 +1,12 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Product from './Product/Index';
 import Addform from './Product/Addform';
 import axios from 'axios';
+import styled from 'styled-components';
 
 let currentProductId = 9;
 
-const Home = () => {
+const Home = ({ className }) => { // U81XO
   const [products, setProducts] = useState([]);
 
   function addProduct(product) {
@@ -25,7 +26,7 @@ const Home = () => {
   }, []); // Put the empty array to make sure that the hook is executed only once
 
   return (
-    <Fragment>
+    <div className={className}>
       <h1>New Products</h1>
       {
         products.length > 0 ? (
@@ -39,8 +40,17 @@ const Home = () => {
         )
       }
       <Addform addProduct={addProduct} />
-    </Fragment>
+    </div>
   );
 };
 
-export default Home;
+export default styled(Home)` 
+  .Home__products {
+    display: flex;
+    flex-wrap: wrap;
+
+    list-style-type: none;
+    padding: 0;
+    margin: 0 -12px;
+  }
+`;
