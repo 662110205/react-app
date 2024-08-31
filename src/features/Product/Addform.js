@@ -1,10 +1,15 @@
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
+import { addProduct } from "./action";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-function AddProduct({addProduct}) {
+function AddProduct() {
     const [name, setName] = useState('');
     const [imageURL, setImageURL] = useState('');
     const [type, setType] = useState('');
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const onChangeName = (event) => {
         setName(event.target.value);
@@ -19,9 +24,10 @@ function AddProduct({addProduct}) {
     }
 
 
-    const onSubmit =(event) =>{
-        event.preventDefault()
-        addProduct({ name, type, imageURL });
+    const onSubmit = (event) => {
+        event.preventDefault();
+        dispatch(addProduct({ name, type, imageURL }));
+        navigate('/');
     }
 
     return (
@@ -30,19 +36,19 @@ function AddProduct({addProduct}) {
             <form id="create-form" onSubmit={onSubmit}>
                 <div className="input-group">
                     <label htmlFor="name">Name</label>
-                    <input 
-                        name="name" 
+                    <input
+                        name="name"
                         type="text"
                         id="name"
                         value={name}
-                        onChange={onChangeName}/>
+                        onChange={onChangeName} />
                 </div>
 
                 <div className=" input-group">
                     <label htmlFor="imageURL">Image URL</label>
-                    <input 
-                        name="imageURL" 
-                        type="text" 
+                    <input
+                        name="imageURL"
+                        type="text"
                         id="imageURL"
                         value={imageURL}
                         onChange={onChangeImageURL} />
@@ -50,9 +56,9 @@ function AddProduct({addProduct}) {
 
                 <div className=" input-group">
                     <label htmlFor="type">Type</label>
-                    <input 
-                        name="type" 
-                        type="text" 
+                    <input
+                        name="type"
+                        type="text"
                         id="type"
                         value={type}
                         onChange={onChangeType} />

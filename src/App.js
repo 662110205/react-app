@@ -8,17 +8,21 @@ import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import AddForm from './features/Product/Addform';
 import UpdateForm from './features/Product/UpdateForm';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProducts } from './features/Product/action';
 
 
 function App() {
-  const [products, setProducts] = useState([]);
+  const products = useSelector((state) => state.products);
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    
     async function getProducts() {
       const products = await axios.get(
         'https://apimocha.com/dornor001/products'
       );
-      setProducts(products.data);
+      dispatch(fetchProducts(products.data));
     }
   
     getProducts();
