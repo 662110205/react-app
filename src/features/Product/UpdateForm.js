@@ -75,10 +75,10 @@ export default function UpdateForm() {
                         onChange={onChangeType} />
                 </div>
 
-                <button type="button" className="UpdateForm__delete-button">
+                <button type="button" className="UpdateForm__delete-button" onClick={onDelete}>
                     Delete restaurant
                 </button>
-                <button type="submit" onClick={onDelete}>Update product</button>
+                <button type="submit" onClick={onSubmit}>Update product</button>
             </form>
         </Fragment>
     );
